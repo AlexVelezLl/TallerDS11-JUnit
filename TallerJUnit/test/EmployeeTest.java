@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import static java.time.temporal.TemporalQueries.localDate;
+import java.util.Date;
 import junit.framework.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -34,7 +38,27 @@ public class EmployeeTest {
         e6 = new Employee(100f,"EUR",1f,EmployeeType.Worker); //Alex
     }
     
+    /**
+     * Test que prueba que el metodo cs calcule de forma correcta
+     * el decimo de un empleado worker que tenga como salario
+     * 100 Euros y 1 de bonusPercentaje
+     */
+    @Test
+    public void csTest6(){
+        int numMes = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+        float preValue = 100f*0.95f;
+        float esperado = numMes%2==0?preValue:preValue + 386f/12*2;
+        Assert.assertEquals(esperado, e6.cs());
+    }
     
-    //csTesti
-    //CalculateYearBonusTesti
+    /**
+     * Test que prueba que el metodo CalculateYearBonus calcule de forma correcta
+     * el bono de fin de año de un empleado worker que tenga como salario
+     * 100 Euros y 1 de bonusPercentaje
+     */
+    @Test
+    public void CalculateYearBonusTest6(){
+        float esperado = 386f;
+        Assert.assertEquals(esperado, e6.CalculateYearBonus());
+    }
 }
