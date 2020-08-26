@@ -4,11 +4,10 @@
  * and open the template in the editor.
  */
 
-import junit.framework.Assert;
+import java.time.ZoneId;
+import java.util.Date;
+import org.junit.Assert;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import taller.Employee;
 import taller.EmployeeType;
 
@@ -33,8 +32,22 @@ public class EmployeeTest {
         e5 = new Employee(100f,"EUR",1f,EmployeeType.Supervisor); //Eddo
         e6 = new Employee(100f,"EUR",1f,EmployeeType.Worker); //Alex
     }
+    @Test
+    public void csTest1(){
+        int LocalDate = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+        Float value=100.0f+0.7f;
+        Float operacion=LocalDate%2==0?value:value+(386f/6f);
+        Assert.assertEquals((Float)e1.cs(),operacion);
+        
+    }
+    @Test
+    public void csTest2(){
+        int LocalDate = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+        Float value=100.0f+0.35F;
+        Float operacion=LocalDate%2==0?value:value+(386f/6f);
+        Assert.assertEquals((Float)e2.cs(),operacion);
+        
+    }
+  
     
-    
-    //csTesti
-    //CalculateYearBonusTesti
 }
