@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 
+import junit.framework.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import tallerpruebas.Employee;
+import tallerpruebas.EmployeeType;
 
 /**
  *
@@ -13,12 +16,32 @@ import static org.junit.Assert.*;
  */
 public class EmployeeTest {
     
+    Employee e4;
     public EmployeeTest() {
+        
+        e4 = new Employee(100f,"EUR",1f,EmployeeType.Manager);
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    /**
+     * Test para probar que se esté calculando correctamente el salario de un 
+     * Manager que gana en Euros, sabiendo que la fecha actual tiene un mes par,
+     * su salario sea 100 y con 1 de bonus.
+     */
+    
+    @Test
+    public void csTest4(){
+        Assert.assertEquals(95.7f,e4.cs());
+    }
+    
+    
+    /**
+    * Test para comprobar si el metodo calculateYearBonus() 
+     * devuelve el valor correcto de bonus para el manager
+     * que gana en euros.
+     */
+    @Test
+    public void calculateYearBonusTest4(){
+        Assert.assertEquals(481f,e4.CalculateYearBonus());
+    }
 }
