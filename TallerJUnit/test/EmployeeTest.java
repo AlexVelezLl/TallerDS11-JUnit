@@ -4,8 +4,13 @@
  * and open the template in the editor.
  */
 
+import junit.framework.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import taller.Employee;
+import taller.EmployeeType;
 
 /**
  *
@@ -13,12 +18,23 @@ import static org.junit.Assert.*;
  */
 public class EmployeeTest {
     
-    public EmployeeTest() {
+    private Employee e1;
+    private Employee e2;
+    private Employee e3;
+    private Employee e4;
+    private Employee e5;
+    private Employee e6;
+    
+    public EmployeeTest(){
+        e1 = new Employee(100f,"USD",1f,EmployeeType.Manager); //Carlos
+        e2 = new Employee(100f,"USD",1f,EmployeeType.Supervisor); //Carlos
+        e3 = new Employee(100f,"USD",1f,EmployeeType.Worker); // Valeria
+        e4 = new Employee(100f,"EUR",1f,EmployeeType.Manager); // Jaime
+        e5 = new Employee(100f,"EUR",1f,EmployeeType.Supervisor); //Eddo
+        e6 = new Employee(100f,"EUR",1f,EmployeeType.Worker); //Alex
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    
+    //csTesti
+    //CalculateYearBonusTesti
 }
