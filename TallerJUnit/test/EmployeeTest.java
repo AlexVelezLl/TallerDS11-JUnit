@@ -4,9 +4,14 @@
  * and open the template in the editor.
  */
 
+<<<<<<< HEAD
 import java.time.LocalDate;
 import java.time.ZoneId;
 import static java.time.temporal.TemporalQueries.localDate;
+=======
+
+import java.time.ZoneId;
+>>>>>>> valeria
 import java.util.Date;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -44,6 +49,29 @@ public class EmployeeTest {
         e6 = new Employee(100f,"EUR",1f,EmployeeType.Worker); //Alex
     }
 
+    /*
+     * Test que prueba que el metodo cs calcule de forma correcta
+     * el decimo de un empleado worker que tenga como salario
+     * 100 USD y 1 de bonusPercentaje 
+     */
+    @Test
+    public void csTest3(){
+        int numMes = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+        float esperado = (float)100 + (float) 386.0/12*2;
+        if(numMes%2==0)Assert.assertEquals((float)100, e3.cs());
+        else Assert.assertEquals(esperado, e3.cs());
+    }
+    
+    /**
+     * Test que prueba que el metodo CalculateYearBonus calcula de forma correcta
+     * el bonus anual de un empleado worker que tenga como salario
+     * 100 USD y 1 de bonusPercentaje 
+     */
+    @Test
+    public void CalculateYearBonusTest3(){
+        Assert.assertEquals((float) 386.0, e3.CalculateYearBonus()); 
+    }
+
     /**
      * Test que prueba que el metodo cs calcule de forma correcta
      * el decimo de un empleado Supervisor que tenga como salario
@@ -60,7 +88,7 @@ public class EmployeeTest {
      * 100 Euros y 1 de bonusPercentaje
      */
     @Test
-    public void supervisorEuroTestBonus(){
+    public void CalculateYearBonusTest6(){
         assertEquals(288.0F, e5.CalculateYearBonus(),0F);
     }
 
@@ -76,7 +104,7 @@ public class EmployeeTest {
         float esperado = numMes%2==0?preValue:preValue + 386f/12*2;
         Assert.assertEquals(esperado, e6.cs());
     }
-    
+
     /**
      * Test que prueba que el metodo CalculateYearBonus calcule de forma correcta
      * el bono de fin de año de un empleado worker que tenga como salario
