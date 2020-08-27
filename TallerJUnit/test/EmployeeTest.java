@@ -4,20 +4,11 @@
  * and open the template in the editor.
  */
 
-<<<<<<< HEAD
 import java.time.LocalDate;
 import java.time.ZoneId;
-import static java.time.temporal.TemporalQueries.localDate;
-=======
-
-import java.time.ZoneId;
->>>>>>> valeria
 import java.util.Date;
 import junit.framework.Assert;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import taller.Employee;
 import taller.EmployeeType;
 
@@ -26,27 +17,67 @@ import taller.EmployeeType;
  * @author CORE i7 ULTIMATE
  */
 public class EmployeeTest {
-    static Employee e;
 
-    @BeforeClass
-    public static void getEmpleado(){
-        e=new Employee(12.4f, "USD", 25.6f, EmployeeType.Worker);
-    }
-    
     private Employee e1;
     private Employee e2;
     private Employee e3;
     private Employee e4;
     private Employee e5;
     private Employee e6;
-    
-    public EmployeeTest(){
-        e1 = new Employee(100f,"USD",1f,EmployeeType.Manager); //Carlos
-        e2 = new Employee(100f,"USD",1f,EmployeeType.Supervisor); //Carlos
-        e3 = new Employee(100f,"USD",1f,EmployeeType.Worker); // Valeria
-        e4 = new Employee(100f,"EUR",1f,EmployeeType.Manager); // Jaime
-        e5 = new Employee(100f,"EUR",1f,EmployeeType.Supervisor); //Eddo
-        e6 = new Employee(100f,"EUR",1f,EmployeeType.Worker); //Alex
+
+    public EmployeeTest() {
+        e1 = new Employee(100f, "USD", 1f, EmployeeType.Manager); //Carlos
+        e2 = new Employee(100f, "USD", 1f, EmployeeType.Supervisor); //Carlos
+        e3 = new Employee(100f, "USD", 1f, EmployeeType.Worker); // Valeria
+        e4 = new Employee(100f, "EUR", 1f, EmployeeType.Manager); // Jaime
+        e5 = new Employee(100f, "EUR", 1f, EmployeeType.Supervisor); //Eddo
+        e6 = new Employee(100f, "EUR", 1f, EmployeeType.Worker); //Alex
+    }
+
+    /*
+     * Test que prueba que el metodo cs calcule de forma correcta
+     * el decimo de un empleado Manager que tenga como salario
+     * 100 USD y 1 de bonusPercentaje 
+     */
+    @Test
+    public void csTest1() {
+        int LocalDate = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+        Float value = 100.0f + 0.7f;
+        Float operacion = LocalDate % 2 == 0 ? value : value + (386f / 6f);
+        Assert.assertEquals((Float) e1.cs(), operacion);
+    }
+
+    /*
+     * Test que prueba que el metodo CalculateYearBonus calcula de forma correcta
+     * el bonus anual de un empleado Manager que tenga como salario
+     * 100 USD y 1 de bonusPercentaje 
+     */
+    @Test
+    public void CalculateYearBonusTest1(){
+        Assert.assertEquals(486.0f, e1.CalculateYearBonus()); 
+    }
+
+    /*
+     * Test que prueba que el metodo cs calcule de forma correcta
+     * el decimo de un empleado Supervisor que tenga como salario
+     * 100 USD y 1 de bonusPercentaje 
+     */
+    @Test
+    public void csTest2() {
+        int LocalDate = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+        Float value = 100.0f + 0.35F;
+        Float operacion = LocalDate % 2 == 0 ? value : value + (386f / 6f);
+        Assert.assertEquals((Float) e2.cs(), operacion);
+    }
+
+    /*
+     * Test que prueba que el metodo CalculateYearBonus calcula de forma correcta
+     * el bonus anual de un empleado Supervisor que tenga como salario
+     * 100 USD y 1 de bonusPercentaje 
+     */
+    @Test
+    public void CalculateYearBonusTest2(){
+        Assert.assertEquals(293.0f, e2.CalculateYearBonus()); 
     }
 
     /*
@@ -88,7 +119,7 @@ public class EmployeeTest {
      * 100 Euros y 1 de bonusPercentaje
      */
     @Test
-    public void CalculateYearBonusTest6(){
+    public void CalculateYearBonusTest5(){
         assertEquals(288.0F, e5.CalculateYearBonus(),0F);
     }
 
