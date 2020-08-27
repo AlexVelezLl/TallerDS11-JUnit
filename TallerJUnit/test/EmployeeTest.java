@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import junit.framework.Assert;
@@ -35,7 +34,7 @@ public class EmployeeTest {
         e5 = new Employee(100f, "EUR", 1f, EmployeeType.Supervisor);
         e6 = new Employee(100f, "EUR", 1f, EmployeeType.Worker);
 
-        int numMes = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+        numMes = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
     }
 
     /*
@@ -56,8 +55,8 @@ public class EmployeeTest {
      * 100 USD y 1 de bonusPercentaje 
      */
     @Test
-    public void CalculateYearBonusTest1(){
-        Assert.assertEquals(486.0f, e1.CalculateYearBonus()); 
+    public void CalculateYearBonusTest1() {
+        Assert.assertEquals(486.0f, e1.CalculateYearBonus());
     }
 
     /*
@@ -78,8 +77,8 @@ public class EmployeeTest {
      * 100 USD y 1 de bonusPercentaje 
      */
     @Test
-    public void CalculateYearBonusTest2(){
-        Assert.assertEquals(293.0f, e2.CalculateYearBonus()); 
+    public void CalculateYearBonusTest2() {
+        Assert.assertEquals(293.0f, e2.CalculateYearBonus());
     }
 
     /*
@@ -88,84 +87,85 @@ public class EmployeeTest {
      * 100 USD y 1 de bonusPercentaje 
      */
     @Test
-    public void csTest3(){
-        float esperado = (float)100 + (float) 386.0/12*2;
-        if(numMes%2==0)Assert.assertEquals((float)100, e3.cs());
-        else Assert.assertEquals(esperado, e3.cs());
-    }
-    
-    /**
-     * Test que prueba que el metodo CalculateYearBonus calcula de forma correcta
-     * el bonus anual de un empleado worker que tenga como salario
-     * 100 USD y 1 de bonusPercentaje 
-     */
-    @Test
-    public void CalculateYearBonusTest3(){
-        Assert.assertEquals((float) 386.0, e3.CalculateYearBonus()); 
+    public void csTest3() {
+        float esperado = (float) 100 + (float) 386.0 / 12 * 2;
+        if (numMes % 2 == 0) {
+            Assert.assertEquals((float) 100, e3.cs());
+        } else {
+            Assert.assertEquals(esperado, e3.cs());
+        }
     }
 
-        
     /**
-     * Test para probar que se esté calculando correctamente el salario de un 
+     * Test que prueba que el metodo CalculateYearBonus calcula de forma
+     * correcta el bonus anual de un empleado worker que tenga como salario 100
+     * USD y 1 de bonusPercentaje
+     */
+    @Test
+    public void CalculateYearBonusTest3() {
+        Assert.assertEquals((float) 386.0, e3.CalculateYearBonus());
+    }
+
+    /**
+     * Test para probar que se esté calculando correctamente el salario de un
      * Manager que gana en Euros, sabiendo que la fecha actual tiene un mes par,
      * su salario sea 100 y con 1 de bonus.
      */
     @Test
-    public void csTest4(){
-        float esperado = numMes % 2 ==0 ? 95.7f : 95.7f + 386.0f/12*2;
-        Assert.assertEquals(esperado,e4.cs());
-    }
-    
-    /**
-    * Test para comprobar si el metodo calculateYearBonus() 
-     * devuelve el valor correcto de bonus para el manager
-     * que gana en euros.
-     */
-    @Test
-    public void calculateYearBonusTest4(){
-        Assert.assertEquals(481f,e4.CalculateYearBonus());
+    public void csTest4() {
+        float esperado = numMes % 2 == 0 ? 95.7f : 95.7f + 386.0f / 12 * 2;
+        Assert.assertEquals(esperado, e4.cs());
     }
 
     /**
-     * Test que prueba que el metodo cs calcule de forma correcta
-     * el decimo de un empleado Supervisor que tenga como salario
-     * 100 Euros y 1 de bonusPercentaje
+     * Test para comprobar si el metodo calculateYearBonus() devuelve el valor
+     * correcto de bonus para el manager que gana en euros.
      */
     @Test
-    public void csTest5(){
-        float esperado = numMes % 2 ==0 ? 95.35f : 95.35f + 386.0f/12*2;
-        assertEquals(esperado, e5.cs());
-    }
-    
-    /**
-     * Test que prueba que el metodo CalculateYearBonus calcule de forma correcta
-     * el bono de fin de año de un empleado Supervisor que tenga como salario
-     * 100 Euros y 1 de bonusPercentaje
-     */
-    @Test
-    public void CalculateYearBonusTest5(){
-        assertEquals(288.0f, e5.CalculateYearBonus());
+    public void calculateYearBonusTest4() {
+        Assert.assertEquals(481f, e4.CalculateYearBonus());
     }
 
     /**
-     * Test que prueba que el metodo cs calcule de forma correcta
-     * el decimo de un empleado worker que tenga como salario
-     * 100 Euros y 1 de bonusPercentaje
+     * Test que prueba que el metodo cs calcule de forma correcta el decimo de
+     * un empleado Supervisor que tenga como salario 100 Euros y 1 de
+     * bonusPercentaje
      */
     @Test
-    public void csTest6(){
-        float preValue = 100f*0.95f;
-        float esperado = numMes%2==0?preValue:preValue + 386f/12*2;
+    public void csTest5() {
+        float esperado = numMes % 2 == 0 ? 95.35f : 95.35f + 386.0f / 12 * 2;
+        Assert.assertEquals(esperado, e5.cs());
+    }
+
+    /**
+     * Test que prueba que el metodo CalculateYearBonus calcule de forma
+     * correcta el bono de fin de año de un empleado Supervisor que tenga como
+     * salario 100 Euros y 1 de bonusPercentaje
+     */
+    @Test
+    public void CalculateYearBonusTest5() {
+        Assert.assertEquals(288.0f, e5.CalculateYearBonus());
+    }
+
+    /**
+     * Test que prueba que el metodo cs calcule de forma correcta el decimo de
+     * un empleado worker que tenga como salario 100 Euros y 1 de
+     * bonusPercentaje
+     */
+    @Test
+    public void csTest6() {
+        float preValue = 100f * 0.95f;
+        float esperado = numMes % 2 == 0 ? preValue : preValue + 386f / 12 * 2;
         Assert.assertEquals(esperado, e6.cs());
     }
 
     /**
-     * Test que prueba que el metodo CalculateYearBonus calcule de forma correcta
-     * el bono de fin de año de un empleado worker que tenga como salario
-     * 100 Euros y 1 de bonusPercentaje
+     * Test que prueba que el metodo CalculateYearBonus calcule de forma
+     * correcta el bono de fin de año de un empleado worker que tenga como
+     * salario 100 Euros y 1 de bonusPercentaje
      */
     @Test
-    public void CalculateYearBonusTest6(){
+    public void CalculateYearBonusTest6() {
         float esperado = 386f;
         Assert.assertEquals(esperado, e6.CalculateYearBonus());
     }
